@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>A Summons to 43 Cornerstone!</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=IM+Fell+English+SC&display=swap" rel="stylesheet">
+    <style>
+        /* General Body Styles */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Cormorant Garamond', serif;
+            background: url('https://contentful.harrypotter.com/usf1vwtuqyxm/F9HaigYRBf4EXksdW7eky/b942e5e906a57290dc8371c3f9ffaa5f/wbstl-great-hall-dinner-web-landscape.jpg?w=1200&fit=fill&f=top') no-repeat center center fixed;
+            background-size: cover;
+            color: #f0e6d2;
+            text-align: center;
+            animation: fadeIn 1.5s ease-in-out;
+            overflow-y: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            box-sizing: border-box;
+            width: 100%;
+        }
+
+        .invite-card {
+            /* Opacity further reduced */
+            background-color: rgba(10, 5, 0, 0.55);
+            border-radius: 20px;
+            padding: 2.5rem 3rem;
+            max-width: 90%;
+            width: 650px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(8px);
+            border: 2px solid rgba(212, 175, 55, 0.6);
+            animation: zoomIn 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+        }
+
+        @keyframes zoomIn {
+            from { transform: scale(0.7); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        h1 {
+            font-family: 'IM Fell English SC', serif;
+            font-size: 2.8rem;
+            margin-bottom: 2rem;
+            color: #ffd700;
+            text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.7);
+            animation: glow 2.5s infinite alternate;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        h1 span {
+            font-size: 3.2rem;
+            margin: 0 0.5rem;
+            filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.5));
+        }
+
+        @keyframes glow {
+            0% { text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.7), 0 0 5px #ffd700; }
+            100% { text-shadow: 3px 3px 8px #000000, 0 0 15px #ffae42, 0 0 20px #ffae42; }
+        }
+
+        .select-wrapper {
+            position: relative;
+            margin-bottom: 2.5rem;
+            width: 80%;
+            max-width: 350px;
+        }
+
+        select {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            padding: 0.9rem 3rem 0.9rem 1.2rem;
+            border-radius: 12px;
+            border: 1px solid #7c5c2a;
+            background-color: rgba(51, 36, 20, 0.8);
+            color: #f0e6d2;
+            appearance: none;
+            cursor: url('https://assets.harrypotterfanzone.com/wp-content/2009/11/wand-cursor.cur'), auto;
+            width: 100%;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+        select:hover {
+            background-color: rgba(68, 48, 27, 0.9);
+            border-color: #d4af37;
+        }
+
+        .select-arrow {
+            position: absolute;
+            top: 50%;
+            right: 1.2rem;
+            transform: translateY(-50%);
+            pointer-events: none;
+            color: #d4af37;
+            font-size: 1.5rem;
+            transition: transform 0.2s ease;
+        }
+
+        .select-wrapper:hover .select-arrow {
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        select option {
+            background-color: #332414;
+            color: #f0e6d2;
+            padding: 0.5rem;
+        }
+
+        .reveal-btn {
+            font-family: 'IM Fell English SC', serif;
+            background: linear-gradient(145deg, #8B0000, #B22222);
+            color: #f0e6d2;
+            font-size: 1.4rem;
+            padding: 1rem 2.2rem;
+            border: none;
+            border-radius: 12px;
+            cursor: url('https://assets.harrypotterfanzone.com/wp-content/2009/11/wand-cursor.cur'), auto;
+            transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.6);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .reveal-btn:hover {
+            background: linear-gradient(145deg, #B22222, #8B0000);
+            transform: scale(1.08) rotate(-2deg);
+            box-shadow: 0 8px 20px rgba(255, 215, 0, 0.3);
+        }
+
+        .scroll-container {
+            margin-top: 3.5rem;
+            width: 100%;
+            display: none;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .custom-scroll-image-style {
+            display: none;
+            max-width: 90%;
+            width: auto;
+            max-height: 70vh;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+            border: 3px solid #8B4513;
+            margin-top: 20px;
+        }
+
+        .custom-modal {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.7);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 10001;
+            padding: 1rem;
+            box-sizing: border-box;
+        }
+        .custom-modal-content {
+            background-color: #4a3b2a;
+            padding: 2rem;
+            border-radius: 10px;
+            border: 2px solid #d4af37;
+            text-align: center;
+            color: #f0e6d2;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+            max-width: 90%;
+            width: 400px;
+        }
+        .custom-modal-content p {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+        }
+        .custom-modal-button {
+            background-color: #a52a2a;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.2s ease;
+        }
+        .custom-modal-button:hover {
+            background-color: #8b0000;
+        }
+
+    </style>
+</head>
+<body>
+    <!-- Main container for the invitation card -->
+    <div class="container">
+        <div class="invite-card">
+            <!-- Updated Heading -->
+            <h1><span>🦉</span> A Summons to 43 Cornerstone! <span>📜</span></h1>
+
+            <!-- Dropdown for name selection -->
+            <div class="select-wrapper">
+                <select id="nameSelect">
+                    <option value="" disabled selected>Select your esteemed name</option>
+                    <!-- Guest List -->
+                    <option value="Yash">Yash</option>
+                    <option value="Milind">Milind</option>
+                    <option value="Kshitij">Kshitij</option>
+                    <option value="Anusha">Anusha</option>
+                    <option value="Vaidik">Vaidik</option>
+                    <option value="Vansh">Vansh</option>
+                    <option value="Navdeep">Navdeep</option>
+                    <option value="Jay">Jay</option>
+                    <option value="Prokta">Prokta</option>
+                    <option value="Aman">Aman</option>
+                    <option value="Aishwarya">Aishwarya</option>
+                    <option value="Kartikey">Kartikey</option>
+                </select>
+                <div class="select-arrow">▼</div> <!-- Custom arrow for the dropdown -->
+            </div>
+
+            <!-- Button to reveal the invitation -->
+            <button class="reveal-btn" onclick="revealScroll()">✨ Reveal Your Invitation ✨</button>
+
+            <!-- Container for the custom scroll image (initially hidden) -->
+            <div class="scroll-container" id="scrollDisplay">
+                <!-- src will be set by JavaScript -->
+                <img id="customScrollImage" src="" alt="Magical Invitation Scroll" class="custom-scroll-image-style"/>
+            </div>
+        </div>
+    </div>
+
+    <!-- Custom Modal for alerts -->
+    <div class="custom-modal" id="customAlertModal">
+        <div class="custom-modal-content">
+            <p id="customAlertMessage"></p>
+            <button class="custom-modal-button" onclick="closeCustomAlert()">Alright!</button>
+        </div>
+    </div>
+
+    <script>
+        // Get DOM elements
+        const nameSelect = document.getElementById('nameSelect');
+        const scrollDisplayContainer = document.getElementById('scrollDisplay');
+        const customScrollImageEl = document.getElementById('customScrollImage');
+        const customAlertModal = document.getElementById('customAlertModal');
+        const customAlertMessage = document.getElementById('customAlertMessage');
+
+        // --- IMPORTANT: CUSTOMIZE IMAGE PATHS BELOW ---
+        // Add an entry for each guest. The key should be the guest's name EXACTLY as it appears in the dropdown.
+        // The value should be the URL or path to their specific invitation image.
+        const guestInviteImages = {
+            "Kartikey": "Kartikey Invite.png", // Specific image for Kartikey
+            "Yash": "Yash Invite.png", // Placeholder: Replace with actual image URL for Yash
+            "Milind": "Milind Invite.png", // Placeholder: Replace with actual image URL for Milind
+            "Kshitij": "Kshitij Invite.png", // Placeholder: Replace with actual image URL for Kshitij
+            "Anusha": "Anusha.png", // Placeholder: Replace with actual image URL for Anusha
+            "Vaidik": "Vaidik Invite.png", // Placeholder: Replace with actual image URL for Vaidik
+            "Vansh": "Vansh invite.png", // Placeholder: Replace with actual image URL for Vansh
+            "Navdeep": "Navdeep Invite.png", // Placeholder: Replace with actual image URL for Navdeep
+            "Jay": "Jay Invite.png", // Placeholder: Replace with actual image URL for Jay
+            "Prokta": "Prokta_Invite.png", // Placeholder: Replace with actual image URL for Prokta
+            "Aman": "Aman_Invite.png", // Placeholder: Replace with actual image URL for Aman
+            "Aishwarya": "Aishwarya Invite.png" // Placeholder: Replace with actual image URL for Aishwarya
+            // Add more guests here if needed, following the same format.
+        };
+
+        // This image will be used if a specific one for a guest is not found in 'guestInviteImages'
+        // or if the specified image for a guest fails to load.
+        // IMPORTANT: Replace 'scroll.png' with an actual URL to a generic scroll image.
+        const defaultScrollImage = "scroll.png";
+        // --- END OF IMAGE CUSTOMIZATION ---
+
+
+        let isRevealing = false; // Flag to prevent multiple clicks during animation
+
+        // Function to show custom alert
+        function showCustomAlert(message) {
+            customAlertMessage.textContent = message;
+            customAlertModal.style.display = 'flex';
+        }
+
+        // Function to close custom alert
+        function closeCustomAlert() {
+            customAlertModal.style.display = 'none';
+        }
+
+        // Main function to reveal the scroll
+        function revealScroll() {
+            if (isRevealing) return;
+
+            const selectedName = nameSelect.value;
+            if (!selectedName) {
+                showCustomAlert("Halt! Pray, select your esteemed name before proceeding.");
+                return;
+            }
+
+            isRevealing = true;
+
+            // Determine the image source
+            let imageUrl = guestInviteImages[selectedName] || defaultScrollImage;
+            customScrollImageEl.src = imageUrl;
+            customScrollImageEl.alt = `Magical Invitation Scroll for ${selectedName}`;
+
+            // Hide image elements initially to prevent flash of old/broken image
+            customScrollImageEl.style.display = 'none';
+            scrollDisplayContainer.style.display = 'none';
+
+            // Short delay for a subtle reveal effect
+            setTimeout(() => {
+                scrollDisplayContainer.style.display = 'flex'; // Show container
+                customScrollImageEl.style.display = 'block'; // Show image
+
+                const scrollToImage = () => {
+                    scrollDisplayContainer.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'nearest' });
+                };
+
+                // Check if image is loaded, then scroll. Handle errors.
+                if (customScrollImageEl.complete || customScrollImageEl.naturalWidth > 0) {
+                    scrollToImage();
+                } else {
+                    customScrollImageEl.onload = scrollToImage;
+                    customScrollImageEl.onerror = () => {
+                        console.error("Error loading scroll image for: " + selectedName + " from URL: " + imageUrl);
+                        showCustomAlert("Alas! The owl seems to have misplaced the scroll image for " + selectedName + ". Attempting to show a generic scroll.");
+                        // Fallback to default image if specific one failed
+                        if (imageUrl !== defaultScrollImage) {
+                            customScrollImageEl.src = defaultScrollImage;
+                            customScrollImageEl.alt = "Generic Magical Invitation Scroll";
+                            // Re-check load state for default image
+                            if (customScrollImageEl.complete || customScrollImageEl.naturalWidth > 0) {
+                                scrollToImage();
+                            } else {
+                                customScrollImageEl.onload = scrollToImage;
+                                customScrollImageEl.onerror = () => { // If default also fails
+                                     showCustomAlert("Oh dear! Even the generic scroll is missing. Please check the image paths.");
+                                     customScrollImageEl.style.display = 'none';
+                                };
+                            }
+                        } else { // Default image itself failed
+                             showCustomAlert("Oh dear! The generic scroll image is missing. Please check its path.");
+                             customScrollImageEl.style.display = 'none';
+                        }
+                    };
+                }
+                isRevealing = false;
+            }, 100); // 100ms delay, can be set to 0 for instant reveal
+        }
+
+        // Preload images for better performance
+        window.addEventListener('load', () => {
+            // Preload all images specified in guestInviteImages
+            for (const guestName in guestInviteImages) {
+                if (guestInviteImages.hasOwnProperty(guestName)) {
+                    const img = new Image();
+                    img.src = guestInviteImages[guestName];
+                }
+            }
+
+            // Preload the default scroll image
+            if (defaultScrollImage && defaultScrollImage !== 'YOUR_GENERIC_SCROLL_IMAGE.png') { // Avoid preloading placeholder
+                const defaultImg = new Image();
+                defaultImg.src = defaultScrollImage;
+            }
+        });
+    </script>
+</body>
+</html>
